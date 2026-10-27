@@ -1,0 +1,1058 @@
+# PROJECT: PHANTOM AI — THE GHOST IN YOUR MACHINE
+
+Act as a senior full-stack engineer, AI engineer, UI/UX designer, open-source developer, and technical product architect.
+
+Build a complete, responsive, production-oriented web application named:
+
+PHANTOM AI
+Tagline: "Something is thinking inside your machine."
+
+The project is being created for the DEV Community theme "Ghost in the Machine."
+
+The website must demonstrate how open-weight AI can power a creative, spooky, interactive experience while highlighting model transparency, privacy, local inference, accessibility, and user control.
+
+This must be a functional application, not a static mockup.
+
+Do not stop after producing the homepage. Implement the complete application, connect its features, handle errors, provide setup instructions, and ensure that the project can be run and deployed.
+
+==================================================
+
+1. CORE OBJECTIVE
+   ==================================================
+
+Create a visually impressive AI-powered horror experience that allows users to:
+
+1. Chat with an AI ghost.
+2. Generate original horror stories.
+3. Explore a simulated haunted terminal.
+4. Create fictional memorials and preserve personal stories.
+5. Switch between different AI personalities.
+6. Configure the AI model and inference provider.
+7. Use a compatible local inference backend when available.
+8. Understand how open-weight AI differs from closed hosted AI services.
+9. Inspect the application's current model and privacy configuration.
+10. Experience the website on mobile, tablet, and desktop.
+
+The website should be impressive during a live hackathon demonstration while remaining technically honest and easy to run.
+
+Do not implement fake AI responses and present them as real model inference.
+
+If an AI provider is not configured, display a clear setup message and offer a visibly labeled demo mode.
+
+==================================================
+2. REQUIRED AI MODEL: GEMMA
+===========================
+
+The application must be designed around Google's Gemma family of open-weight models.
+
+The requested model is Gemma 4.
+
+IMPORTANT MODEL VERIFICATION REQUIREMENT:
+
+Before implementing the integration, verify whether the exact requested Gemma 4 model is available through the selected inference provider and determine its supported API or local runtime interface.
+
+Do not invent a model identifier, endpoint, package, or API capability.
+
+Do not silently replace Gemma 4 with another model.
+
+If the exact model is unavailable through the chosen provider:
+
+* Keep the model integration configurable.
+* Explain the limitation in the README.
+* Make the requested model identifier configurable through environment variables.
+* Permit a different compatible Gemma model only when the developer explicitly configures it.
+* Clearly display the actual configured model name.
+* Do not claim that Gemma 4 was used unless the running application actually uses it.
+
+Implement a provider abstraction so the AI model can be changed without rewriting the application's core logic.
+
+Required provider options:
+
+A. Google AI API provider, if the selected Gemma model is available through it.
+B. Local inference provider, using a compatible local runtime such as Ollama or another documented Gemma-compatible runtime.
+C. Demo mode with clearly labeled simulated responses when no AI provider is configured.
+
+Use the official documentation for the selected provider to verify supported model names, request formats, authentication, and limitations.
+
+Do not assume that an API key or model identifier for one provider works with another provider.
+
+For local inference:
+
+* Make the local base URL configurable.
+* Make the model name configurable.
+* Handle an unavailable local runtime gracefully.
+* Explain how to download and run a compatible model.
+* Do not claim offline support until the model has been downloaded and the application has successfully connected to the local runtime.
+* Ensure that the user interface distinguishes local inference from remote inference.
+
+Create a provider interface with functions equivalent to:
+
+generateText()
+generateStory()
+generateChatResponse()
+checkConnection()
+getModelInformation()
+
+Keep provider-specific logic separate from the UI.
+
+==================================================
+3. TECHNOLOGY STACK
+===================
+
+Use the following stack where compatible with the selected AI Studio environment:
+
+Frontend:
+
+* React
+* TypeScript
+* Vite, if supported by the chosen environment
+* Tailwind CSS
+* Lucide icons
+* Framer Motion or lightweight CSS animations
+
+Backend:
+
+* Node.js
+* TypeScript
+* Express, or the backend architecture supported by the generated environment
+* Server-side AI provider integration
+* Environment-variable configuration
+
+Persistence:
+
+* IndexedDB or localStorage for suitable client-side data
+* No external database required for the initial version
+* Keep personal memorial content local by default
+
+If the selected Google AI Studio environment uses a different supported scaffold, adapt the implementation without breaking the required features.
+
+Use a clean, modular directory structure.
+
+Suggested structure:
+
+src/
+components/
+Navbar.tsx
+Sidebar.tsx
+GhostAssistant.tsx
+ChatMessage.tsx
+StoryGenerator.tsx
+HauntedTerminal.tsx
+MemoryVault.tsx
+PersonalitySelector.tsx
+ModelStatus.tsx
+PrivacyIndicator.tsx
+LoadingAnimation.tsx
+Toast.tsx
+
+pages/
+Home.tsx
+PhantomChat.tsx
+StoryLab.tsx
+HauntedTerminalPage.tsx
+MemoryVaultPage.tsx
+ModelLab.tsx
+OpenInnovation.tsx
+Settings.tsx
+
+services/
+aiProvider.ts
+gemmaProvider.ts
+localProvider.ts
+demoProvider.ts
+privacyService.ts
+storageService.ts
+
+hooks/
+types/
+utils/
+App.tsx
+main.tsx
+
+server/
+index.ts
+routes/
+chat.ts
+stories.ts
+health.ts
+providers/
+gemma.ts
+local.ts
+
+Add other files when necessary.
+
+Keep frontend code, server code, model configuration, and local storage responsibilities clearly separated.
+
+==================================================
+4. DESIGN SYSTEM
+================
+
+Create a premium dark horror aesthetic.
+
+Visual direction:
+
+* Deep black background.
+* Charcoal and midnight-purple surfaces.
+* Neon violet highlights.
+* Muted emerald-green terminal accents.
+* Pale moonlight typography.
+* Subtle red warning accents.
+* Atmospheric gradients.
+* Fog-like animated backgrounds.
+* Floating dust particles.
+* Minimal glowing borders.
+* Ghostly hover effects.
+* Subtle animated spectral elements.
+
+Avoid making the interface look like a generic AI dashboard.
+
+The website should feel like a mysterious digital archive discovered on an abandoned computer.
+
+Typography:
+
+* Use a futuristic display font for headings.
+* Use a readable sans-serif font for body text.
+* Use a monospace font for terminal output and model information.
+
+Use restrained animations and respect the user's reduced-motion preferences.
+
+Avoid excessive flickering, flashing, or animations that impair accessibility.
+
+Responsive behavior:
+
+* Desktop: immersive dashboard with a left sidebar.
+* Tablet: collapsible navigation.
+* Mobile: compact navigation and vertically stacked panels.
+
+Create reusable CSS variables for colors, spacing, typography, borders, shadows, and animation timing.
+
+==================================================
+5. LANDING PAGE
+===============
+
+Build an immersive homepage with the following sections.
+
+A. HERO SECTION
+
+Headline:
+"THE GHOST IN YOUR MACHINE"
+
+Subheadline:
+"An open-weight AI experiment where forgotten stories awaken, terminals whisper, and your imagination becomes the haunting."
+
+Primary button:
+"ENTER THE HAUNTED SYSTEM"
+
+Secondary button:
+"EXPLORE THE MODEL"
+
+Include:
+
+* Animated ghost or spectral orb.
+* Atmospheric background.
+* A subtle system boot sequence.
+* Small status label: SYSTEM STATUS: AWAKE.
+* AI provider status that reflects the actual configuration.
+
+B. LIVE SYSTEM STATUS
+
+Show:
+
+* Current provider.
+* Configured model identifier.
+* Connection state.
+* Local or remote inference.
+* Privacy mode.
+* Whether demo mode is active.
+
+Never display a successful connection unless a real health check succeeds.
+
+C. FEATURE CARDS
+
+Create interactive cards for:
+
+* Phantom Chat
+* Ghost Story Generator
+* Haunted Terminal
+* Digital Memory Vault
+* Model Lab
+
+Each card must navigate to a working feature.
+
+D. OPEN INNOVATION SECTION
+
+Headline:
+"WHY OPEN AI MATTERS"
+
+Explain:
+
+* Open-weight models allow developers to inspect and adapt model usage more flexibly.
+* Compatible local inference can keep prompts and responses on the user's computer.
+* Developers can experiment with different compatible models.
+* Local inference can reduce dependence on hosted inference APIs.
+* Open model weights do not automatically make all training data, code, or licenses open.
+* Local inference is not automatically private if the application uses external services elsewhere.
+* Running models locally still requires suitable hardware and consumes computing resources.
+
+E. FOOTER
+
+Include:
+
+* GitHub repository placeholder.
+* DEV Community article placeholder.
+* Documentation.
+* Privacy information.
+* Open-source license.
+* Current model and provider disclosure.
+
+Do not invent GitHub stars, user counts, benchmark results, awards, or testimonials.
+
+==================================================
+6. FEATURE ONE: PHANTOM CHAT
+============================
+
+Create a fully interactive AI chat interface.
+
+The AI should have a mysterious, unsettling, literary personality while remaining useful and safe.
+
+Default personality:
+
+THE PHANTOM
+
+Personality description:
+"An ancient intelligence hiding between forgotten files. It speaks in atmospheric riddles, eerie observations, and thoughtful reflections."
+
+Other personalities:
+
+1. THE ARCHIVIST
+   Collects forgotten knowledge and tells stories from the past.
+
+2. THE FORGOTTEN CODER
+   Speaks like a programming language that disappeared from history.
+
+3. THE NIGHT WATCHER
+   Responds with suspenseful, cinematic horror narration.
+
+4. THE FRIENDLY SPIRIT
+   A gentle, comforting conversational companion.
+
+5. THE ORACLE
+   Gives poetic, philosophical answers.
+
+Provide a personality selector.
+
+Chat functionality:
+
+* Text input.
+* Send button.
+* Enter-to-send behavior.
+* Loading indicator.
+* Streaming responses when supported.
+* Message timestamps.
+* Copy response.
+* Clear conversation.
+* Regenerate response.
+* Conversation history saved locally when enabled.
+* Empty-state suggestions.
+* Graceful error messages.
+* Responsive message bubbles.
+
+Suggested prompt buttons:
+
+* "Tell me what happened at 3:17 AM."
+* "Describe the last message on an abandoned computer."
+* "Tell me a horror story about artificial intelligence."
+* "What does a forgotten program dream about?"
+* "Write a ghost story with an unexpected ending."
+
+Every actual AI response must pass through the configured provider.
+
+Use an explicit demo-mode label when responses are simulated.
+
+Keep model system instructions on the server when using a remote API.
+
+Do not expose API keys in frontend JavaScript or browser-visible environment variables.
+
+==================================================
+7. FEATURE TWO: GHOST STORY GENERATOR
+=====================================
+
+Create an interactive horror-writing laboratory.
+
+User inputs:
+
+* Story title.
+* Main character.
+* Setting.
+* Horror subgenre.
+* Story length.
+* Fear intensity.
+* Narrative perspective.
+* Ending type.
+* Optional keywords.
+
+Horror subgenres:
+
+* Psychological horror.
+* Supernatural horror.
+* Gothic horror.
+* Cosmic horror.
+* Haunted technology.
+* Abandoned internet.
+* Ghosts in old computers.
+* Folklore-inspired horror.
+
+Ending options:
+
+* Unexpected twist.
+* Open ending.
+* Bittersweet ending.
+* Dark ending.
+* Hopeful ending.
+
+Story lengths:
+
+* Flash fiction.
+* Short story.
+* Extended story.
+
+Buttons:
+
+* GENERATE STORY
+* CONTINUE STORY
+* CHANGE THE ENDING
+* MAKE IT SCARIER
+* MAKE IT MORE MYSTERIOUS
+* COPY STORY
+* DOWNLOAD STORY
+
+Use Gemma through the active provider to generate original stories.
+
+Preserve the user's settings when continuing a story.
+
+Provide an attractive reading view with appropriate typography.
+
+Save stories locally only when the user requests it or enables saving.
+
+Do not describe generated text as written by a different model.
+
+==================================================
+8. FEATURE THREE: HAUNTED TERMINAL
+==================================
+
+Build a visually realistic but SAFE simulated terminal.
+
+This is a fictional interface, not a shell that executes arbitrary system commands.
+
+Display a terminal prompt such as:
+
+ghost@phantom:~$
+
+Support a limited list of simulated commands:
+
+help
+status
+whoami
+ls
+scan
+history
+summon
+whisper
+readme
+clear
+exit
+
+Command behavior:
+
+help:
+Display the supported commands.
+
+status:
+Display the fictional terminal status and the real application provider status separately.
+
+whoami:
+Reveal a fictional haunted-system identity.
+
+ls:
+Display a fixed list of fictional files.
+
+scan:
+Generate an eerie system scan narrative.
+
+history:
+Display the current session's simulated command history.
+
+summon:
+Ask the configured AI provider to create a short spooky message.
+
+whisper:
+Generate a brief, unsettling line of text.
+
+readme:
+Display a fictional description of PHANTOM AI.
+
+clear:
+Clear the terminal output.
+
+exit:
+Return to the terminal welcome screen.
+
+Unknown commands:
+Display a helpful error.
+
+CRITICAL SECURITY REQUIREMENTS:
+
+* Do not execute arbitrary shell commands.
+* Do not use child_process to execute user-supplied terminal input.
+* Do not provide direct access to the host filesystem.
+* Do not scan the real user's computer.
+* Do not access files, cameras, microphones, or sensors without explicit permission and a legitimate implemented feature.
+* Do not pretend that simulated scans are real security scans.
+* Clearly label the terminal as a fictional simulation.
+
+Use atmospheric typing effects, blinking cursors, terminal colors, and controlled animations.
+
+==================================================
+9. FEATURE FOUR: DIGITAL MEMORY VAULT
+=====================================
+
+Create a respectful digital remembrance feature inspired by the theme's emphasis on memory, remembrance, and stories that survive over time.
+
+This feature must not claim to contact, resurrect, or communicate with deceased people.
+
+Users can create a fictional or personal remembrance card containing:
+
+* Display name or nickname.
+* A story or memory.
+* Favorite food.
+* Favorite song.
+* A meaningful quote.
+* A personal message.
+* Optional date or occasion.
+
+Show a visually beautiful remembrance card with warm candlelight-inspired colors, subtle flowers, and a peaceful design.
+
+Allow users to:
+
+* Create a remembrance card.
+* Preview it.
+* Edit it.
+* Delete it.
+* Export it as a text or JSON file.
+* Store it locally in the browser.
+
+Privacy requirements:
+
+* Do not upload remembrance content by default.
+* Do not transmit private memories to an AI provider unless the user explicitly chooses an AI-powered feature and understands the disclosure.
+* Do not generate fabricated personal memories and present them as authentic.
+* Make deletion and export controls easy to find.
+* Explain that browser-local storage can be lost if browser data is cleared.
+* Do not imply that localStorage provides encrypted storage.
+
+Include a gentle note:
+"This space preserves the stories we choose to remember. It does not recreate or contact the people we miss."
+
+==================================================
+10. FEATURE FIVE: MODEL LAB
+===========================
+
+Create a technical dashboard for developers.
+
+Display:
+
+* Requested model family.
+* Actual configured model identifier.
+* Provider name.
+* Inference location: local or remote.
+* Connection status.
+* Whether demo mode is active.
+* Maximum output tokens when supported.
+* Temperature when supported.
+* Response latency measured by the application.
+* A clear model configuration panel.
+
+Configuration options:
+
+* Provider.
+* Model identifier.
+* Local inference endpoint.
+* Generation temperature.
+* Maximum output length.
+* System personality.
+* Local history preference.
+
+Only show settings supported by the selected provider.
+
+Add a connection-test button.
+
+Add a model information panel explaining:
+
+* Why the model was selected.
+* Whether inference is local or remote.
+* What information is sent to the provider.
+* Hardware requirements for local inference.
+* How to switch to a compatible model.
+
+Do not fabricate model benchmarks, parameter counts, GPU utilization, token throughput, or connection results.
+
+Only display hardware information if it is actually measured or explicitly supplied by the user.
+
+Clearly distinguish:
+
+* Requested model.
+* Configured model.
+* Successfully connected model.
+* Model used for the last completed generation.
+
+==================================================
+11. FEATURE SIX: OPEN INNOVATION EXPLAINER
+==========================================
+
+Create a dedicated educational page titled:
+
+"WHY THE GHOST BELONGS TO EVERYONE"
+
+Explain open-weight AI through the actual design decisions in this project.
+
+Discuss:
+
+1. Privacy:
+   Local inference can reduce the need to send prompts to remote services.
+
+2. Independence:
+   A local application can continue working without an internet connection after the necessary software and model files have been downloaded, provided its features do not depend on external services.
+
+3. Adaptability:
+   Developers can experiment with compatible models, prompts, and inference settings.
+
+4. Cost:
+   Local inference can avoid per-request API charges, although hardware, electricity, storage, and maintenance still have costs.
+
+5. Longevity:
+   A local application and downloadable model artifacts can reduce dependence on one hosted AI provider.
+
+6. Transparency:
+   A developer can inspect the application code and provider integration.
+
+7. Limitations:
+   Open weights do not automatically guarantee unrestricted use, complete transparency, model accuracy, privacy, or a fully open-source software stack.
+
+Explain the differences among:
+
+* Open-source software.
+* Open-weight models.
+* Hosted model APIs.
+* Local inference.
+
+Do not claim that the Gemma model weights are OSI-approved open-source software unless that claim is specifically verified and properly qualified.
+
+Include a comparison table:
+
+Category | Hosted AI | Local Open-Weight AI
+
+Data path:
+Explain which service receives prompts in each configuration.
+
+Internet:
+Explain the requirements for each configuration.
+
+Costs:
+Explain API charges versus hardware and operating costs.
+
+Customization:
+Explain which model and inference settings can be changed.
+
+Availability:
+Explain the dependence on external services versus a configured local runtime.
+
+Be technically balanced rather than claiming that one approach is universally superior.
+
+==================================================
+12. PRIVACY AND SECURITY ARCHITECTURE
+=====================================
+
+Implement privacy as an actual product feature.
+
+Requirements:
+
+* API credentials remain server-side.
+* Read secrets from environment variables.
+* Never commit secrets to Git.
+* Include .env.example containing placeholders only.
+* Validate incoming API requests.
+* Limit request body sizes.
+* Add basic rate limiting to remote AI routes.
+* Handle upstream timeouts.
+* Return safe error messages.
+* Avoid logging private conversation content by default.
+* Never transmit Memory Vault entries automatically.
+* Provide clear privacy disclosures.
+* Avoid unnecessary third-party analytics.
+* Add a reasonable Content Security Policy when compatible with the deployment.
+* Keep dependencies minimal.
+* Add input validation and output handling.
+* Do not use eval or dynamic code execution.
+* Do not claim end-to-end encryption unless it is genuinely implemented and reviewed.
+
+For local inference, explain that requests may remain on the device only when the selected model is actually served locally and no other application component transmits those prompts elsewhere.
+
+For hosted inference, clearly disclose that prompts are sent to the configured provider.
+
+==================================================
+13. ACCESSIBILITY AND USER EXPERIENCE
+=====================================
+
+Implement:
+
+* Semantic HTML.
+* Accessible button labels.
+* Keyboard navigation.
+* Visible focus indicators.
+* Appropriate color contrast.
+* Form labels and validation messages.
+* Screen-reader-friendly status messages.
+* Reduced-motion support.
+* Responsive typography.
+* Helpful empty states.
+* Clear loading and error states.
+* Consistent navigation.
+* Confirmation before deleting saved memories.
+* Confirmation before clearing important content.
+
+The design must remain usable without animations.
+
+==================================================
+14. DEMO MODE
+=============
+
+Provide a clearly labeled demo mode.
+
+Demo mode should:
+
+* Demonstrate the user interface without an API key.
+* Use a small collection of predefined fictional responses.
+* Simulate a short terminal narrative.
+* Allow users to explore story settings.
+* Clearly disclose that AI responses are simulated.
+* Never pretend a real model is connected.
+* Never display a false successful model health check.
+* Never claim that a generated response came from Gemma when it did not.
+
+Make it easy to switch to a real configured provider.
+
+==================================================
+15. OPTIONAL ADVANCED FEATURES
+==============================
+
+Implement these only after all core features work.
+
+A. Installable PWA:
+Provide a web app manifest, suitable icons, and a service worker where supported.
+
+B. Offline shell:
+Cache static application assets so the interface can open offline after installation.
+
+Do not imply that offline shell caching makes remote AI inference available offline.
+
+C. Local model mode:
+Connect to a compatible local inference server with explicit user configuration.
+
+D. Downloadable stories:
+Allow generated stories to be saved as .txt or .md files.
+
+E. Exportable memory archive:
+Export user-selected remembrance cards as JSON.
+
+F. Model response metadata:
+Show the provider and configured model associated with each response when the provider reliably supplies that information.
+
+G. Optional sound:
+Offer subtle ambient audio only after a user-initiated action, with a visible mute control.
+
+Do not autoplay audio.
+
+==================================================
+16. ERROR HANDLING
+==================
+
+Handle these cases:
+
+* Missing API credentials.
+* Unsupported model identifier.
+* Provider unavailable.
+* Local model runtime offline.
+* Network timeout.
+* Rate-limit response.
+* Invalid user input.
+* Empty AI response.
+* Malformed provider response.
+* Browser storage unavailable.
+* Failed story export.
+* Failed memory export.
+* Unsupported streaming.
+* Failed model health check.
+
+Display understandable messages rather than raw stack traces.
+
+Never silently switch models when an error occurs.
+
+Offer a way to retry or return to demo mode.
+
+==================================================
+17. README AND OPEN-SOURCE REPOSITORY
+=====================================
+
+Generate a complete README.md containing:
+
+* Project name.
+* Project overview.
+* Theme connection.
+* Features.
+* Screenshots section with placeholders.
+* Technology stack.
+* Architecture diagram using Mermaid.
+* Model integration details.
+* Exact verified model identifier or a clear configuration placeholder.
+* Local setup instructions.
+* Environment variable instructions.
+* Local inference instructions.
+* Hosted inference instructions.
+* Demo mode instructions.
+* Privacy model.
+* Security notes.
+* Known limitations.
+* Troubleshooting.
+* Deployment instructions.
+* Contribution guidelines.
+* License information.
+
+Include:
+
+.env.example
+.gitignore
+LICENSE
+package.json
+README.md
+
+Choose a permissive license such as Apache-2.0 only if it is appropriate for the generated project and the developer intends to use it.
+
+Do not misrepresent the licensing of the Gemma model itself. Explain that the model has its own terms, separate from the application's software license.
+
+Never include real API keys or credentials in the repository.
+
+Add a sample architecture diagram:
+
+User Interface
+|
+v
+Application API
+|
+v
+AI Provider Interface
+|
++------------------+
+|                  |
+v                  v
+Hosted Gemma API    Local Model Runtime
+|                  |
+v                  v
+Remote Inference    Local Inference
+
+Add a note explaining that the diagram shows alternative configurations, not necessarily simultaneous active connections.
+
+==================================================
+18. DEV COMMUNITY BLOG SUPPORT
+==============================
+
+Create a page or downloadable Markdown template called:
+
+"PHANTOM AI — DEV.to Launch Article"
+
+The page must contain a complete, editable technical article template for publishing the project on DEV Community.
+
+Include:
+
+* An engaging title.
+* A short introduction.
+* The Ghost in the Machine theme.
+* The problem being explored.
+* The PHANTOM AI solution.
+* Feature highlights.
+* Technical architecture.
+* The Gemma integration.
+* Why open-weight AI matters.
+* Local versus hosted inference.
+* Privacy considerations.
+* Technical challenges.
+* What was learned.
+* Installation instructions.
+* GitHub repository placeholder.
+* Live demo placeholder.
+* Screenshots placeholders.
+* Future improvements.
+* Conclusion.
+* Appropriate DEV Community tags.
+
+Suggested tags:
+#ai
+#opensource
+#webdev
+#machinelearning
+
+Use the platform's accepted tag format when generating the final Markdown.
+
+The article must distinguish implemented features from planned features.
+
+Do not invent test results, real users, benchmark scores, performance measurements, successful offline tests, or claims that the project has already been deployed.
+
+Provide editable placeholders for:
+[GitHub repository URL]
+[Live demo URL]
+[Author name]
+[Verified model identifier]
+[Inference provider]
+[Deployment platform]
+
+Add a button to download the article as a Markdown file.
+
+Do not automatically publish to DEV Community.
+
+Explain that publishing requires the developer to review the content and use their own DEV Community account.
+
+==================================================
+19. CODE QUALITY
+================
+
+Write maintainable, production-oriented code.
+
+Requirements:
+
+* Use TypeScript types.
+* Keep components focused.
+* Avoid giant monolithic components.
+* Separate model providers.
+* Centralize configuration.
+* Use reusable UI components.
+* Avoid unnecessary dependencies.
+* Validate API inputs.
+* Provide meaningful error messages.
+* Add comments around important architectural decisions.
+* Use consistent naming.
+* Avoid placeholder functions for required core functionality.
+* Avoid buttons that do nothing.
+* Avoid fake success notifications.
+* Avoid nonfunctional navigation.
+* Do not leave TODO comments in place of required features.
+
+Provide a minimal test suite covering:
+
+* Provider selection.
+* Demo-mode behavior.
+* Story input validation.
+* Simulated terminal command handling.
+* Local storage operations.
+* Error handling for unavailable providers.
+
+If the environment supports running commands, run the build and tests.
+
+Fix the errors discovered by those checks.
+
+Do not claim that tests passed unless they were actually run successfully.
+
+==================================================
+20. FINAL DELIVERABLES
+======================
+
+Produce the following:
+
+1. Complete responsive website.
+2. Working navigation.
+3. Functional Phantom Chat.
+4. Functional Ghost Story Generator.
+5. Safe Haunted Terminal simulation.
+6. Functional Digital Memory Vault.
+7. Model Lab.
+8. Open Innovation explainer.
+9. Configurable Gemma provider integration.
+10. Configurable local inference integration.
+11. Clearly labeled demo mode.
+12. Privacy and security controls.
+13. README.md.
+14. .env.example.
+15. .gitignore.
+16. Appropriate application license file.
+17. DEV.to article Markdown template.
+18. Setup and deployment instructions.
+19. Basic automated tests.
+20. Final implementation summary.
+
+==================================================
+21. IMPLEMENTATION WORKFLOW
+===========================
+
+Follow this order:
+
+STEP 1:
+Inspect the available development environment and select a supported project scaffold.
+
+STEP 2:
+Verify the actual Gemma model and provider integration before implementing AI calls.
+
+STEP 3:
+Create the complete design system and application layout.
+
+STEP 4:
+Implement navigation and the landing page.
+
+STEP 5:
+Implement the AI provider abstraction and clearly labeled demo provider.
+
+STEP 6:
+Implement Phantom Chat and Ghost Story Generator.
+
+STEP 7:
+Implement the safe simulated Haunted Terminal.
+
+STEP 8:
+Implement the locally stored Digital Memory Vault.
+
+STEP 9:
+Implement Model Lab and the Open Innovation page.
+
+STEP 10:
+Implement privacy controls, validation, error handling, and security protections.
+
+STEP 11:
+Generate the README, environment template, license file, and DEV.to article template.
+
+STEP 12:
+Run available tests and the production build.
+
+STEP 13:
+Fix discovered issues and summarize anything that could not be verified.
+
+Do not stop after producing a plan. Implement the application.
+
+If a capability is unavailable in the environment, implement the closest honest alternative and document the limitation.
+
+==================================================
+22. FINAL DESIGN GOAL
+=====================
+
+The finished website should feel like a polished interactive horror experience built by a thoughtful open-source AI developer.
+
+The first impression should be mysterious and cinematic.
+
+The actual product should be useful, accessible, secure, and technically credible.
+
+The project should clearly demonstrate why open-weight AI matters through its architecture and behavior, not merely through a paragraph claiming that it uses open AI.
+
+The final result must be suitable for:
+
+* A live hackathon demonstration.
+* A public GitHub repository.
+* A technical DEV Community article.
+* Further development by other open-source contributors.
+
+Build PHANTOM AI now.

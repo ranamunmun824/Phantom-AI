@@ -1,0 +1,8 @@
+{
+  "name": "PHANTOM AI",
+  "description": "The Ghost in the Machine — An open-weight AI experience exploring local vs hosted inference, interactive horror storytelling, haunted terminals, and digital remembrance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
